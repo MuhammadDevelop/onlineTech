@@ -13,6 +13,13 @@ import shutil
 import os
 app = FastAPI()
 
+class UserOutput(BaseModel):
+    email: str
+    image: str
+
+
+
+
 # Statik fayllar uchun mount
 app.mount("/videos", StaticFiles(directory="videos"), name="videos")
 
@@ -62,8 +69,8 @@ lessons = [
            video_url="https://onlinetech.onrender.com/videos/word-2.mp4"),
 
     Lesson(id=3, category="Word darslari", title="Dizayn va Maket bo'limlari", description="Dizayn va Maket bo'limlari haqida",
-           subtitle="Dizayn bo‘limida foydalanuvchi interfeysi, ranglar, shriftlar, tugmalar va sahifa ko‘rinishi yaratiladi.Maket bo‘limida esa bu dizaynlar tartiblanadi, elementlar joylashuvi va o‘lchamlari aniqlanadi (ya’ni, dizayn qanday ko‘rinishda bo‘lishi kerakligi chiziladi).",
-           answer="Vstavka > Rasm menyusi orqali qo‘shiladi.",
+           subtitle="Dizayn va Maket bo'limida nimalar o'rganamiz?",
+           answer="Dizayn bo‘limida foydalanuvchi interfeysi, ranglar, shriftlar, tugmalar va sahifa ko‘rinishi yaratiladi.Maket bo‘limida esa bu dizaynlar tartiblanadi, elementlar joylashuvi va o‘lchamlari aniqlanadi (ya’ni, dizayn qanday ko‘rinishda bo‘lishi kerakligi chiziladi",
            video_url="https://onlinetech.onrender.com/videos/word-3.mp4"),
 
     Lesson(id=4, category="Excel darslari", title="Excelga kirish", description="Excel dasturiga kirish.",
@@ -213,3 +220,6 @@ Bilim ol jamoasi
         server.send_message(user_msg)
 
     return {"message": "Izoh saqlandi va email yuborildi"}
+@app.get("/users", response_model=List[UserOutput])
+def get_users():
+    return USERS
