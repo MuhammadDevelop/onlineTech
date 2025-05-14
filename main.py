@@ -16,7 +16,7 @@ app = FastAPI()
 class UserOutput(BaseModel):
     email: str
     image: str
-
+    name: Optional[str] = None
 
 
 
