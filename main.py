@@ -54,22 +54,22 @@ lessons = [
     Lesson(id=1, category="Word darslari", title="Word kirish", description="Word dasturiga kirish va Glavnaya bo'limi",
            subtitle="Word Nima uchun kerak?",
            answer="Microsoft Word matn yaratish, tahrirlash va formatlash uchun kerak",
-           video_url="https://backendthree-sc1q.onrender.com/videos/word-1.mp4"),
+           video_url="https://onlinetech.onrender.com/videos/word-1.mp4"),
 
     Lesson(id=2, category="Word darslari", title="Vstavka bo'limi bilan tanishish", description="Vstavka bo'limi haqida.",
            subtitle="Vstavka bo'limi bizga nima uchun kerak?",
            answer="Hujjatni boyitish, rasm, jadval va boshqa elementlarni qo‘shish uchun kerak.",
-           video_url="https://backendthree-sc1q.onrender.com/videos/word-2.mp4"),
+           video_url="https://onlinetech.onrender.com/videos/word-2.mp4"),
 
     Lesson(id=3, category="Word darslari", title="Dizayn va Maket bo'limlari", description="Dizayn va Maket bo'limlari haqida",
            subtitle="Dizayn bo‘limida foydalanuvchi interfeysi, ranglar, shriftlar, tugmalar va sahifa ko‘rinishi yaratiladi.Maket bo‘limida esa bu dizaynlar tartiblanadi, elementlar joylashuvi va o‘lchamlari aniqlanadi (ya’ni, dizayn qanday ko‘rinishda bo‘lishi kerakligi chiziladi).",
            answer="Vstavka > Rasm menyusi orqali qo‘shiladi.",
-           video_url="https://backendthree-sc1q.onrender.com/videos/word-3.mp4"),
+           video_url="https://onlinetech.onrender.com/videos/word-3.mp4"),
 
     Lesson(id=4, category="Excel darslari", title="Excelga kirish", description="Excel dasturiga kirish.",
            subtitle="Excel Nima uchun kerak?",
            answer="Excel maʼlumotlarni tartiblash, hisoblash va tahlil qilish uchun kerak.",
-           video_url="https://backendthree-sc1q.onrender.com/videos/excal-1.mp4"),
+           video_url="https://onlinetech.onrender.com/videos/excal-1.mp4"),
 ]
 
 # Foydalanuvchi ro‘yxatlari
