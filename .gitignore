@@ -1,0 +1,4 @@
+.qodo
+echo "videos/*.mp4" >> .gitignore
+
+
