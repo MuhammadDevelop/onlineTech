@@ -9,6 +9,8 @@ import random
 from email.mime.text import MIMEText
 import hashlib
 from fastapi import UploadFile, File, Form
+from sqlalchemy import Column, Integer, String
+from database import Base
 import shutil
 import os
 app = FastAPI()
