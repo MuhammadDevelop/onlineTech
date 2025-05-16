@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Optional, List, Dict
 from email.mime.text import MIMEText
-from translations import translations 
+
 import smtplib
 import random
 import hashlib
@@ -336,7 +336,62 @@ def get_users():
 
 
 @app.get("/lessons", response_model=List[Lesson])
-def get_lessons(lang: str = Query("uz", regex="^(uz|en|ru)$")):
+def get_lessons(lang: str = "uz"):
+    localized = []
+    for lesson in lessons:
+        # Kategoriya tarjimasi
+        category_translated = translations["categories"].get(lesson.category, {}).get(lang, lesson.category)
+
+        # Har bir matn maydoni uchun tarjima, default uz tilidagi matn
+        title = translations["lessons"].get(lesson.id, {}).get("title", {}).get(lang, lesson.title)
+        description = translations["lessons"].get(lesson.id, {}).get("description", {}).get(lang, lesson.description)
+        subtitle = translations["lessons"].get(lesson.id, {}).get("subtitle", {}).get(lang, lesson.subtitle)
+        answer = translations["lessons"].get(lesson.id, {}).get("answer", {}).get(lang, lesson.answer)
+
+        localized.append(Lesson(
+            id=lesson.id,
+            category=category_translated,
+            title=title,
+            description=description,
+            subtitle=subtitle,
+            answer=answer,
+            video_url=lesson.video_url
+        ))
+    return localized
+
+    localized = []
+    for lesson in lessons:
+        # Category ni tarjima qilish
+        category_key = lesson.category
+        category_translated = translations["categories"].get(category_key, {}).get(lang, category_key)
+
+        localized.append(Lesson(
+            id=lesson.id,
+            category=category_translated,
+            title=lesson.title if lang == "uz" else translations["lessons"][lesson.id]["title"].get(lang, lesson.title),
+            description=lesson.description if lang == "uz" else translations["lessons"][lesson.id]["description"].get(lang, lesson.description),
+            subtitle=lesson.subtitle if lang == "uz" else translations["lessons"][lesson.id]["subtitle"].get(lang, lesson.subtitle),
+            answer=lesson.answer if lang == "uz" else translations["lessons"][lesson.id]["answer"].get(lang, lesson.answer),
+            video_url=lesson.video_url
+        ))
+    return localized
+    localized = []
+    for lesson in lessons:
+        # Category ni tarjima qilish
+        category_key = lesson.category
+        category_translated = translations["categories"].get(category_key, {}).get(lang, category_key)
+
+        localized.append(Lesson(
+            id=lesson.id,
+            category=category_translated,  # Bu yerda tarjimasi qo'yiladi
+            title=lesson.title if lang == "uz" else translations["lessons"][lesson.id]["title"][lang],
+            description=lesson.description if lang == "uz" else translations["lessons"][lesson.id]["description"][lang],
+            subtitle=lesson.subtitle if lang == "uz" else translations["lessons"][lesson.id]["subtitle"][lang],
+            answer=lesson.answer if lang == "uz" else translations["lessons"][lesson.id]["answer"][lang],
+            video_url=lesson.video_url
+        ))
+    return localized
+
     lessons_list = []
     for id, lesson in translations["lessons"].items():
         # video_url darslarga qo'shish uchun lessons ro'yxatidan qidiramiz
