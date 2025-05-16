@@ -227,8 +227,8 @@ def get_users():
     return USERS
 
 
-@app.get("/lessons/{lesson_id}", response_model=Lesson)
-def get_lesson_by_id(lesson_id: int, lang: str = "uz"):
+@app.get("/lessons/{lesson_id}/localized", response_model=Lesson)
+def get_localized_lesson_by_id(lesson_id: int, lang: str = "uz"):
     for lesson in lessons:
         if lesson.id == lesson_id:
             lesson_trans = translations["lessons"].get(lesson.id, {})
