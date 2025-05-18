@@ -138,12 +138,14 @@ def verify_code(data: VerifyInput):
     raise HTTPException(status_code=400, detail="Kod noto‘g‘ri")
 
 # Avatar yuklash
+# Avatar yuklash
 @app.post("/upload-avatar")
 async def upload_avatar(email: str = Form(...), image: UploadFile = File(...)):
     filename = f"avatars/{email.replace('@', '_')}.png"
     with open(filename, "wb") as buffer:
         shutil.copyfileobj(image.file, buffer)
-    file_url = f"https://backendthree-sc1q.onrender.com/{filename}"
+
+    file_url = f"https://backendthree-sc1q.onrender.com/avatars/{email.replace('@', '_')}.png"
     return {"message": "Rasm saqlandi", "image": file_url}
 
 # Komment qo'shish
